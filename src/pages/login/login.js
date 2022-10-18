@@ -68,12 +68,6 @@ export default function Login() {
                                 <div className='py-3'>
                                     <button className='btn btn1 btn-primary' onClick={loginApi}>LOGIN</button>
                                 </div>
-                                {/* <div className='d-flex justify-content-between m-0 py-2'>
-                                    <div>
-                                        <p className='l-account m-0'>Dont have an account?</p>
-                                    </div>
-                                    <NavLink to='/'><p className='l-reg'>Register Here</p></NavLink>
-                                </div> */}
                             </div>
                         </div>
                     </div>
