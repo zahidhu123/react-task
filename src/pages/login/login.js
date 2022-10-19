@@ -8,10 +8,7 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-
     const navigate = useNavigate();
-
-
 
     const handleEmail = (e) => {
         setEmail(e.target.value)
@@ -30,16 +27,14 @@ export default function Login() {
             password: password
         })
             .then(result => {
-                console.log(result.data.token)
-                // alert('success')
-
-                navigate('/home')
+                console.log(result.data.token);
+                localStorage.setItem('token',result.data.token)
+                window.location.reload();
             })
             .catch(error => {
                 console.log(error)
             })
     }
-
 
 
     return (
@@ -52,7 +47,7 @@ export default function Login() {
                                 <div>
                                     <h1 className='l-heading'>Welcome to login</h1>
                                 </div>
-                                <p className='l-ph'>Login to contine using Food Kicken</p>
+                                <p className='l-ph'>Login to contine using React task</p>
                                 <div>
                                     <div className='mb-3'>
                                         <label htmlFor="" className='l-label'>Email or Username</label>

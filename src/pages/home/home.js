@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router';
 import AddUser from '../../component/add-user/addUser';
-import Navbar from '../../component/navbar/navbar'
+import Navbar from '../../component/navbar/navbar';
+import './home.css'
 
 export default function Home() {
-
+const [searchValue, setSearchValue] = useState('');
     const demolist = [
         {
             product: 'Mobile',
@@ -24,9 +26,19 @@ export default function Home() {
     const [item, setItem] = useState(demolist);
 
 
-    // useEffect(() => {
-    //     setItem(oldArray => [...oldArray, user])
-    // }, [user]);
+    function onSearch(searchedValue) {
+        setSearchValue(searchedValue);
+        console.log(searchedValue.length);
+        if (searchedValue.length != 0) {
+            const searchArray = item.filter((data)=> (data.product).toLowerCase().includes(searchedValue));
+            setItem(searchArray);
+        } else {
+            setItem(demolist);
+        }
+       
+    }
+
+
 
     function onUserAdd(data) {
         setItem(oldArray => [...oldArray, data])
@@ -47,15 +59,14 @@ export default function Home() {
             <div className='container'>
                 <div className="row justify-content-center mt-5">
                     <div className="col-lg-8">
-                        <div className="row p-0 justify-content-between">
+                        <div className="row p-0 justify-content-between mb-3">
                             <div className="col-md-6">
                                 <form class="d-flex">
-                                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                    <button className="btn btn-outline-success" type="submit">Search</button>
+                                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchValue} onChange={(e)=> onSearch(e.target.value)}/>
                                 </form>
                             </div>
-                            <div className="col-md-3">
-                                <div className='d-flex justify-content-end'>
+                            <div className="col-md-3 mt-lg-0 mt-3">
+                                <div className='add-wrapper'>
                                     <AddUser handleData={(data) => onUserAdd(data)}/>
                                 </div>
                             </div>
@@ -65,17 +76,17 @@ export default function Home() {
                         <table class="table shadow rounded border mt-2">
                             <thead className='table-dark'>
                                 <tr>
-                                    <th scope="col">Product name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" className='text-center'>Product name</th>
+                                    <th scope="col" className='text-center'>Price</th>
+                                    <th scope="col" className='text-center'>Action</th>
                                 </tr>
                             </thead>
                             <tbody className='table-secondary'>
                                 {item.map((data, index) => {
                                     return <tr>
-                                        <td>{data.product}</td>
-                                        <td>{data.price}</td>
-                                        <td><i class="fa-solid fa-trash-can delete" onClick={() => { onDelete(index) }}></i></td>
+                                        <td className='text-center'>{data.product}</td>
+                                        <td className='text-center'>{data.price}</td>
+                                        <td><i class="fa-solid fa-trash-can delete delete-icon" onClick={() => { onDelete(index) }}></i></td>
                                     </tr>
                                 })}
                             </tbody>

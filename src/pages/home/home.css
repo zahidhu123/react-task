@@ -1,0 +1,19 @@
+.delete-icon{
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.add-wrapper{
+    display: flex;
+    justify-content: end;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .add-wrapper{
+        justify-content: start;
+    }
+}
