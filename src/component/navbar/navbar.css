@@ -1,0 +1,10 @@
+.bg-light {
+    background-color: #98c1d9 !important;
+  }
+  
+  .nav-font{
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: white !important;
+  }

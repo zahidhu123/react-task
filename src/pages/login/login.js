@@ -30,7 +30,7 @@ export default function Login() {
             password: password
         })
             .then(result => {
-                console.log(result.data)
+                console.log(result.data.token)
                 // alert('success')
 
                 navigate('/home')
